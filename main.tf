@@ -67,7 +67,7 @@ resource "aws_security_group" "alb_sg" {
 
 # ── VPC ──────────────────────────────────────────────────────────────
 module "vpc" {
-  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins-main.git//terraform-module-vpc"
+  source     = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins-main.git//terraform-module-vpc"
   cidr_block = var.vpc_cidr
   vpc_name   = "${local.name_prefix}-vpc"
   tags       = local.common_tags
