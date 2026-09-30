@@ -17,18 +17,6 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
-            steps {
-                checkout scmGit(
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git',
-                        credentialsId: 'github-https'
-                    ]]
-                )
-            }
-        }
-
         stage('Terraform Init') {
             steps {
                 sh """
