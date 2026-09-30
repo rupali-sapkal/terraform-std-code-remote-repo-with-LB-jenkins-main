@@ -67,8 +67,7 @@ resource "aws_security_group" "alb_sg" {
 
 # ── VPC ──────────────────────────────────────────────────────────────
 module "vpc" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-vpc"
-
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins-main.git//terraform-module-vpc"
   cidr_block = var.vpc_cidr
   vpc_name   = "${local.name_prefix}-vpc"
   tags       = local.common_tags
@@ -76,7 +75,7 @@ module "vpc" {
 
 # ── Subnets ─────────────────────────────────────────────────────────
 module "subnets" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-subnet"
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-subnet"
 
   for_each              = var.subnets
   subnet_name           = "${local.name_prefix}-${each.key}"
@@ -90,7 +89,7 @@ module "subnets" {
 
 # ── EC2 Security Groups ─────────────────────────────────────────────
 module "ec2_security_groups" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-security-group"
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-security-group"
 
   for_each      = var.ec2_instances
   instance_name = "${local.name_prefix}-${each.key}"
@@ -102,7 +101,7 @@ module "ec2_security_groups" {
 
 # ── EC2 Instances ───────────────────────────────────────────────────
 module "ec2_instances" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-ec2"
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-ec2"
 
   for_each           = var.ec2_instances
   instance_name      = "${local.name_prefix}-${each.key}"
@@ -116,7 +115,7 @@ module "ec2_instances" {
 
 # ── S3 Bucket ─────────────────────────────────────────────────────
 module "s3_bucket" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-s3"
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-s3"
 
   bucket_name = "${local.name_prefix}-${var.bucket_suffix}-${random_id.bucket_suffix.hex}"
   environment = var.environment
@@ -125,7 +124,7 @@ module "s3_bucket" {
 
 # ── Application Load Balancer ─────────────────────────────────────
 module "alb" {
-  source = "git::https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-alb"
+  source = "git::https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git//terraform-module-alb"
 
   name   = local.name_prefix
   vpc_id = module.vpc.vpc_id
