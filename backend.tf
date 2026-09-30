@@ -14,7 +14,7 @@ terraform {
 
   # Uncomment for remote state (recommended for teams):
   backend "s3" {
-    bucket         = "mydev-project-terraform-sample-amit"
+    bucket         = "mydev-project-terraform-sample-rupali-123"
     key            = "infra/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-lock"
