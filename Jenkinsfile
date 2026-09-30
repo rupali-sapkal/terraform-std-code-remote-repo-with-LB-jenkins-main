@@ -21,7 +21,7 @@ pipeline {
             steps {
                 checkout scmGit(
                     branches: [[name: "*/${params.BRANCH}"]],
-                    userRemoteConfigs: [[url: 'https://github.com/amit24sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git']]
+                    userRemoteConfigs: [[url: 'https://github.com/rupali-sapkal/terraform-std-code-remote-repo-with-LB-jenkins.git']]
                 )
             }
         }
